@@ -4,6 +4,9 @@ if(process.env.NODE_ENV!="production"){
   require("dotenv").config()
 
 }
+console.log("CLOUD_NAME:", process.env.CLOUD_NAME);
+console.log("CLOUD_KEY:", process.env.CLOUD_KEY);
+console.log("CLOUD_API_SECRET:", process.env.CLOUD_API_SECRET);
 
 const Listitem = require("./models/list.js");
 const Review = require("./models/Review.js");
