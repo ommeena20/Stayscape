@@ -1,0 +1,187 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row create-item">
+    
+    <div class="col-8 offset-2">
+
+        <br><br/>
+
+        <h2>Create a New Listitem</h2>
+
+        <form method="post" action="/listitems" novalidate class="row g-3 needs-validation" enctype="multipart/form-data" >
+
+            <!-- TITLE -->
+            <div class="mb-3">
+                <label for="title" class="form-label">title</label>
+
+                <input 
+                    class="form-control border border-dark"
+                    required
+                    placeholder="title"
+                    name="title"
+                    type="text"
+                >
+
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please enter title
+                </div>
+            </div>
+
+
+            <!-- DESCRIPTION -->
+            <div class="mb-3">
+                <label for="description" class="form-label">description</label>
+
+                <input 
+                    class="form-control border border-dark"
+                    required
+                    placeholder="description"
+                    name="description"
+                    type="text"
+                >
+
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please fill the essential!
+                </div>
+            </div>
+
+
+            <!-- IMAGE -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload New image</label>
+
+                <input 
+                    class="form-control border border-dark"
+               
+                    placeholder="Upload new image"
+                    name="image"
+                    type="file"
+                    required
+                >
+
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please fill the image URL!
+                </div>
+            </div>
+
+
+            <!-- PRICE -->
+            <div class="mb-3">
+                <label for="price" class="form-label">price</label>
+
+                <input 
+                    class="form-control border border-dark"
+                    required
+                    placeholder="price"
+                    name="price"
+                   
+                >
+
+                <div class="valid-feedback">
+                    Good price!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please fill the price
+                </div>
+            </div>
+
+
+            <!-- LOCATION -->
+            <div class="mb-3">
+                <label for="location" class="form-label">location</label>
+
+                <input 
+                    class="form-control border border-dark"
+                    required
+                    placeholder="location"
+                    name="location"
+                    type="text"
+                >
+
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please enter the location
+                </div>
+            </div>
+
+            
+
+
+
+
+
+
+
+
+
+
+            <!-- COUNTRY -->
+            <div class="mb-3">
+                <label for="country" class="form-label">country</label>
+
+                <input 
+                    class="form-control border border-dark"
+                    required
+                    placeholder="country"
+                    name="country"
+                    type="text"
+                >
+
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+
+                <div class="invalid-feedback">
+                    Please enter the country name
+                </div>
+            </div>
+
+            <br>
+
+            <button class="btn btn-dark">
+                Add
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+(() => {
+  'use strict'
+
+  const forms = document.querySelectorAll('.needs-validation')
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+
+    }, false)
+  })
+})()
+</script>

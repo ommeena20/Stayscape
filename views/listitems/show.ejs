@@ -1,0 +1,281 @@
+<% layout("/layouts/boilerplate") %>
+
+
+
+
+
+<div class="container  mt-4">
+
+
+   
+
+    <!-- Listing Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card wow-card">
+
+                <img  src="<%= item.image.url %>"
+                     class="card-img-top w-100 show-image"
+                     alt="item_image">
+
+                <div class="card-body p-3">
+
+                    <h3><%= item.title %></h3>
+
+                    <p class="desc">
+                        <%= item.description %>
+                    </p>
+
+                    <p><strong>Price:</strong> ₹<%= item.price %></p>
+
+                    <p><strong>Location:</strong> <%= item.location %></p>
+
+                    <p><strong>Country:</strong> <%= item.country %></p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <% if(CurrUser && CurrUser._id.equals(item.owner._id)){ %>
+
+    <div class="row justify-content-center mt-3">
+
+        <div class="col-md-6 d-flex gap-2">
+
+            <a href="/listitems/<%= item.id %>/edit"
+               class="btn btn-dark">
+                Edit
+            </a>
+
+            <form method="POST"
+                  action="/listitems/<%= item.id %>?_method=DELETE">
+
+                <button onc class="btn btn-danger">
+                    Delete
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <% } %>
+
+    <hr>
+
+    <!-- Review Form -->
+    <% if(CurrUser){ %>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <h4 class="mb-3">Review & Ratings</h4>
+
+            <form
+                method="POST"
+                action="/listitems/<%= item.id %>/reviews"
+                class="needs-validation"
+                novalidate
+            >
+
+                <div class="mb-3">
+
+                    <label class="form-label">Rating</label>
+
+                    <div class="stars">
+
+                        <input type="radio" id="star1" name="review[rating]" value="1" required>
+                        <label for="star1">★</label>
+
+                        <input type="radio" id="star2" name="review[rating]" value="2">
+                        <label for="star2">★</label>
+
+                        <input type="radio" id="star3" name="review[rating]" value="3">
+                        <label for="star3">★</label>
+
+                        <input type="radio" id="star4" name="review[rating]" value="4">
+                        <label for="star4">★</label>
+
+                        <input type="radio" id="star5" name="review[rating]" value="5">
+                        <label for="star5">★</label>
+
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="comment" class="form-label">
+                        Comment
+                    </label>
+
+                    <textarea
+                        class="form-control"
+                        id="comment"
+                        name="review[comment]"
+                        rows="4"
+                        required
+                    ></textarea>
+
+                </div>
+                    
+                <button  class="btn btn-dark">
+                    Submit Review
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <% } %>
+
+    <hr>
+
+    <!-- Reviews -->
+
+    <div class="row">
+
+        <% for(const review of item.reviews){ %>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card review-card">
+
+                <div class="card-body">
+
+                    <h5><%= review.author.email %></h5>
+
+                    <div class="review-stars">
+
+                        <% for(let i=0;i<review.rating;i++){ %>
+                            ★
+                        <% } %>
+
+                    </div>
+
+                    <p class="card-text">
+                        <%= review.comment %>
+                    </p>
+
+                    <form
+                        method="POST"
+                        action="/listitems/<%= item.id %>/reviews/<%= review.id %>?_method=DELETE"
+                    >
+
+                        <button class="btn btn-danger btn-sm">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <% } %>
+
+    </div>
+
+    <hr>
+
+    <!-- Map Section (moved to the end, after reviews) -->
+    <div class="row justify-content-center  ">
+
+        <div class="col-md-10">
+
+            <h4 class="mb-3">Where you'll be</h4>
+
+            <div id="map" style="height: 400px; width: 100%;  border-radius: 10px; margin-bottom:20px "></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+(() => {
+    'use strict';
+
+    const forms = document.querySelectorAll('.needs-validation');
+
+    Array.from(forms).forEach(form => {
+
+        form.addEventListener('submit', event => {
+
+            if (!form.checkValidity()) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+            }
+
+            form.classList.add('was-validated');
+
+        }, false);
+
+    });
+
+})();
+</script>
+
+<script>
+  const locationName = "<%= item.location %>";
+  const country = "<%= item.country %>";
+  const query = encodeURIComponent(`${locationName}, ${country}`);
+
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.length === 0) {
+        document.getElementById("map").innerHTML =
+          "<p class='text-muted'>Location not found on map.</p>";
+        return;
+      }
+
+      const lat = parseFloat(data[0].lat);
+      const lon = parseFloat(data[0].lon);
+
+      // Fix Leaflet's default marker icon paths — must run after Leaflet has loaded
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+      });
+
+      const map = L.map("map").setView([lat, lon], 13);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+        maxZoom: 19
+      }).addTo(map);
+
+      L.marker([lat, lon])
+        .addTo(map)
+        .bindPopup(`<b><%= item.title %></b><br><%= item.location %>`)
+        .openPopup();
+
+      // Fixes grey/broken tiles caused by the map sizing itself
+      // before the page layout has fully settled
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 200);
+    })
+    .catch(err => {
+      console.error("Map error:", err);
+      document.getElementById("map").innerHTML =
+        "<p class='text-muted'>Could not load map.</p>";
+    });
+</script>

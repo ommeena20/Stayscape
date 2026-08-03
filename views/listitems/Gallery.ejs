@@ -1,0 +1,39 @@
+<% layout("/layouts/boilerplate") %>
+
+<% layout("/layouts/boilerplate") %>
+
+<link rel="stylesheet" href="/css/gallery.css">
+
+<div class="gallery-header">
+  <h1 class="plus-jakarta">📷 Photo Gallery</h1>
+  <p class="text-muted">A closer look at beautiful stays around the world</p>
+</div>
+
+<%
+  const captions = [
+    "Beachfront Villa",
+    "Mountain Cabin",
+    "Cozy City Loft",
+    "Countryside Retreat",
+    "Modern Poolside House",
+    "Lakeside Cottage",
+    "Desert Getaway",
+    "Tropical Bungalow",
+    "Rustic Farmhouse",
+    "Rooftop Penthouse",
+    "Forest Cabin",
+    "Cliffside Escape"
+  ];
+%>
+
+<div class="gallery-grid">
+  <% captions.forEach((caption, i) => { %>
+    <div class="gallery-item">
+      <img
+        src="https://loremflickr.com/600/400/villa?random=<%= Math.random() %>"
+        alt="<%= caption %>"
+        loading="lazy"
+      >
+    </div>
+  <% }) %>
+</div>

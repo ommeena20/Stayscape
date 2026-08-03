@@ -1,0 +1,162 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row mt-5">
+  <div class="col-8 offset-2">
+
+    <h2 class="mb-4">Edit Listing</h2>
+
+    <form
+      method="POST"
+      action="/listitems/<%= item.id %>?_method=PUT"
+      enctype="multipart/form-data"
+      class="needs-validation"
+      novalidate
+    >
+
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          value="<%= item.title %>"
+          required
+        >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter the title.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          name="description"
+          value="<%= item.description %>"
+          required
+        >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter the description.
+        </div>
+      </div>
+
+      <!-- Current Image -->
+      <div class="mb-3">
+        <img
+          src="<%= originalimageUrl %>"
+          alt="Listing Image"
+          class="img-fluid rounded"
+          style="max-width:250px;"
+        >
+      </div>
+
+      <!-- Upload New Image -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload New Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="image"
+          name="image"
+        >
+      </div>
+
+      <div class="row">
+
+        <!-- Price -->
+        <div class="col-md-4 mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            name="price"
+            value="<%= item.price %>"
+            required
+          >
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter the price.
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="col-md-4 mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input
+            type="text"
+            class="form-control"
+            id="location"
+            name="location"
+            value="<%= item.location %>"
+            required
+          >
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter the location.
+          </div>
+        </div>
+
+        <!-- Country -->
+        <div class="col-md-4 mb-3">
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            class="form-control"
+            id="country"
+            name="country"
+            value="<%= item.country %>"
+            required
+          >
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter the country.
+          </div>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-dark">
+        Edit Listing
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const forms = document.querySelectorAll('.needs-validation');
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>

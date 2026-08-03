@@ -1,0 +1,65 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">❤️ My Wishlist</h2>
+
+    <% if (Userwatchlist.wishlist.length === 0) { %>
+
+        <div class="text-center mt-5">
+            <h4>No items in your wishlist.</h4>
+            <a href="/listitems" class="btn btn-primary mt-3">
+                Explore Listings
+            </a>
+        </div>
+
+    <% } else { %>
+
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+
+            <% for (let item of Userwatchlist.wishlist) { %>
+
+                <div class="col">
+
+                    <a href="/listitems/<%= item._id %>" class="List-link">
+
+                        <div class="card listing-card h-100">
+
+                            <img
+                                src="<%= item.image.url %>"
+                                class="card-img-top"
+                                alt="<%= item.title %>"
+                            >
+
+                            <div class="card-body">
+
+                                <h5><%= item.title %></h5>
+
+                                <p class="text-muted">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <%= item.location %>, <%= item.country %>
+                                </p>
+
+                                <h5 class="text-danger">
+                                    ₹<%= item.price.toLocaleString("en-IN") %>
+                                    <small class="text-muted">/ night</small>
+                                </h5>
+
+                            </div>
+                            <form method="POST" action="/listitems/wishlist/<%= item._id %>?_method=DELETE">
+                                <button class="btn btn-danger w-20 "  >delete</button>
+                            </form>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            <% } %>
+
+        </div>
+
+    <% } %>
+
+</div>

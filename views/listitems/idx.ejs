@@ -1,0 +1,130 @@
+<% layout("/layouts/boilerplate") %>
+<%=success%>
+
+<div class="filters">
+
+  <div class="filter-row">
+
+   <a href="/listitems/wishlist" class="filter">
+  <div class="filter-icon">
+    <i class="fa-solid fa-heart"></i>
+  </div>
+  <p>Wishlist</p>
+</a>
+
+    <a href="/about" class="filter">
+    <div class="filter-icon">
+        <i class="fa-solid fa-circle-info"></i>
+    </div>
+    <p>About us</p>
+</a>
+
+    <a href="/listitems/gallery" class="filter">
+        <div class="filter-icon">
+           <i class="fa-solid fa-camera-retro"></i>
+        </div>
+        <p>Camera</p>
+    </a>
+
+    <a href="/users" class="filter">
+      <div class="filter-icon">
+          <i class="fa-solid fa-users"></i>
+      </div>
+      <p>Users</p>
+    </a>
+
+  </div>
+
+  <div class="toggle">
+    <div class="d-flex align-items-center bg-light rounded-pill px-3 py-2 shadow-sm">
+      <div class="form-check form-switch mb-0">
+        <input
+          class="form-check-input fs-5"
+          type="checkbox"
+          role="switch"
+          id="switchCheckDefault"
+        >
+      </div>
+
+      <label
+        class="form-check-label fw-semibold ms-2 mb-0"
+        for="switchCheckDefault"
+      >
+        Display Total after Taxes
+      </label>
+    </div>
+  </div>
+
+</div>
+
+<div class="container mt-2">
+
+  <h1 class="plus-jakarta mb-1">Explore Stays</h1>
+  <p class="text-muted mb-4">Find your next place to wander</p>
+
+  <% if(content.length === 0){ %>
+
+    <div class="text-center text-muted py-5">
+      <i class="fa-solid fa-compass fa-3x mb-3"></i>
+      <p>No listings yet. Check back soon!</p>
+    </div>
+
+  <% } else { %>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+
+    <% for(cont of content){ %>
+
+      <a href="/listitems/<%= cont.id %>" class="List-link col">
+
+        <div class="card listing-card h-100">
+
+          <div class="card-img-wrapper">
+
+            <img
+              src="<%= cont.image.url %>"
+              class="card-img-top"
+              alt="<%= cont.title %>"
+            >
+
+            <span class="price-badge">
+              ₹<%= cont.price != null
+                    ? cont.price.toLocaleString("en-IN")
+                    : "N/A" %>
+              <small>/ night</small>
+              <br>
+
+              <i class="tax-info" >18%gst</i>
+            </span>
+
+          </div>
+
+          <div class="card-body">
+
+            <h5 class="listing-title"><%= cont.title %></h5>
+
+            <p class="listing-location ">
+              <i class="fa-solid fa-location-dot"></i>
+              <%= cont.location %>, <%= cont.country %> <br>
+
+              
+            </p>
+             <form action="/listitems/wishlist/<%= cont.id %>" method="POST">
+    <button type="submit" class="btn border-0 bg-transparent p-0 heart-btn">
+    <i class="fa-solid fa-heart text-danger fs-4"></i>
+</button>
+</form>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    <% } %>
+
+  </div>
+
+  <% } %>
+
+</div>

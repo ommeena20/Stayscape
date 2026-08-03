@@ -1,0 +1,397 @@
+.plus-jakarta{
+  font-family: "Plus Jakarta Sans", sans-serif;
+
+  font-optical-sizing: auto;
+  font-weight:400;
+  font-style: normal;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+     padding-bottom: 80px;
+}
+.content{
+       flex:1;
+}
+.body{
+    background-color: green;
+}
+.navbar{
+    height: 5rem;
+   background-color:#e1ded0;
+  
+   
+}
+.nav-link{
+    font-size:14px !important;
+    font-weight: bold !important;
+    color: rgb(18, 18, 18) !important;
+    font-family:Arial, Helvetica, sans-serif;
+    font-style:normal;
+    letter-spacing: 2px;
+    font-weight: normal;
+    
+}
+
+.fa-compass{
+    font-size: 2rem;
+    color:rgb(243, 66, 66) !important;
+}
+
+/* footer */
+.foot{
+    display: flex;
+   background-color:whitesmoke;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    color: whitesmoke;
+    font-size: 0.95rem;
+}
+
+.foot-social i{
+    font-size: 1.3rem;
+    margin-right: 15px;
+    cursor: pointer;
+    color:rgb(33, 31, 31);
+    transition: color 0.3s;
+}
+
+.wander{
+     color:rgb(33, 31, 31);
+    font-weight: bolder;
+}
+.foot-social i:hover{
+    color: #ff6b6b;
+
+}
+
+.footer-clicks a{
+     color:rgb(33, 31, 31);
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.footer-clicks a:hover{
+    color: #ffc107;
+}
+
+/* cards */
+
+.listing-card{
+    border: none !important;
+    margin-bottom: 0.5rem;
+    border-radius: 1rem !important;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+}
+.listing-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 14px 24px rgba(0,0,0,0.15);
+}
+.foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+}
+.card-img-wrapper{
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+}
+.card-img-top{
+    width: 100% !important;
+    height: 20rem;
+    object-fit: cover !important;
+    transition: transform 0.4s ease;
+}
+.listing-card:hover .card-img-top{
+    transform: scale(1.06);
+}
+.card-body{
+    padding: 0.9rem 0.2rem 0.2rem !important;
+}
+.List-link{
+    text-decoration: none;
+    color: inherit;
+}
+.price-badge{
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: white;
+    color: rgb(213, 53, 106);
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.price-badge small{
+    color: #777;
+    font-weight: 400;
+}
+.listing-title{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.listing-location{
+    color: rgb(100, 100, 100);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+.listing-location i{
+    color: rgb(213, 53, 106);
+    margin-right: 4px;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+} 
+
+/* form editing */
+.create-item input{
+    border: 4px solid rgb(233, 94, 94);
+}
+
+/* show-page */
+.show-image{
+    height: 35vh;
+    width: 60vh !important;
+   
+}
+.wow-card{
+    padding-left: 0;
+    padding-right: 0;
+    width: 90%;
+    
+}
+.buttoners{
+    display: flex;
+}
+/* show descrorjp */
+.desc{
+    color:rgb(49, 76, 61);
+margin-top: 20px !important;
+word-wrap:break-word !important;
+}
+.editbut{
+    margin-top:0;
+    background-color: rgb(229, 145, 229) !important;
+    border: 1px solid rgb(229, 145, 229) !important;
+}
+/* star rating form */
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+
+.stars input {
+    display: none;
+}
+
+
+.stars label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+
+.stars label:hover,
+.stars label:hover ~ label {
+    color: gold;
+}
+
+
+.stars input:checked + label {
+    color: gold;
+}
+
+
+
+/* review card */
+
+
+.review-card {
+
+    width: 320px;
+
+    margin: 20px 0;
+
+    border-radius: 12px;
+
+    background-color: white;
+
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+
+}
+
+
+
+.review-stars {
+
+    color: gold;
+
+    font-size: 25px;
+
+    margin-bottom: 10px;
+
+}
+#map{
+    height:400px;
+    width:100%;
+    margin-top:20px;
+    border-radius:10px;
+}
+
+
+.review-card .card-text {
+
+    max-height: 80px;
+
+    overflow-y: auto;
+
+    word-wrap: break-word;
+
+}
+
+
+.toggle{
+  
+  /* Small gap from right side */
+   margin-left: auto;   /* pushes it to the extreme right */
+   margin-right: 110px; 
+   margin-bottom: 30px;
+   border: 1px solid #ddd;
+   border-radius: 25px;
+   padding: 8px 15px;
+   background: #fff;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+  .form-check-input{
+    width: 2.8rem;
+    height: 1.4rem;
+    cursor: pointer;
+}
+
+.form-check-label{
+    font-weight: 500;
+    cursor: pointer;
+}
+  
+  .tax-info{
+    
+    display: none;
+    color: green;
+    font-style: normal;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+   .gallery-header {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 60px 60px;
+  justify-content: center;
+}
+
+.gallery-item {
+  width: 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item:hover img {
+  opacity: 0.85;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+  margin-top: 20px;
+  margin-left: 75px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.filter {
+  font-size: medium;
+  text-align: center;
+  color: #ff385c;
+  opacity: 0.7;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.filter:visited {
+  color: #ff385c;
+}
+
+.filter:hover {
+  color: #ff385c;
+  opacity: 1;
+  text-decoration: none;
+}
+
+.filter-icon,
+.filter-icon i {
+  font-size: 1.4rem;
+  color: #ff385c;
+}
+
+.filter p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.toggle {
+  flex-shrink: 0;
+}

@@ -1,0 +1,21 @@
+<% layout("/layouts/boilerplate") %>
+
+<link rel="stylesheet" href="/css/gallery.css">
+
+<div class="gallery-header">
+  <h1 class="plus-jakarta">👥 Our Community</h1>
+  <p class="text-muted">Meet the people using Wonderlust</p>
+</div>
+
+<div class="gallery-grid">
+  <% users.forEach(user => { %>
+    <div class="gallery-item" style="width: 220px; text-align: center; padding: 20px 10px; background: #fff;">
+      <img
+        src="https://ui-avatars.com/api/?name=<%= encodeURIComponent(user.email) %>&background=random&size=80"
+        alt="<%= user.email %>"
+        style="width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 12px; object-fit: cover;"
+      >
+      <p style="margin: 0; font-weight: 500;"><%= user.email %></p>
+    </div>
+  <% }) %>
+</div>
