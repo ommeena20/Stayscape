@@ -1,23 +1,19 @@
 <% layout("/layouts/boilerplate") %>
 
-
-
-
-
-<div class="container  mt-4">
-
-
-   
+<div class="container mt-4">
 
     <!-- Listing Card -->
     <div class="row justify-content-center">
+
         <div class="col-md-6">
 
             <div class="card wow-card">
 
-                <img  src="<%= item.image.url %>"
-                     class="card-img-top w-100 show-image"
-                     alt="item_image">
+                <img
+                    src="<%= item.image.url %>"
+                    class="card-img-top w-100 show-image"
+                    alt="item_image"
+                >
 
                 <div class="card-body p-3">
 
@@ -38,24 +34,30 @@
             </div>
 
         </div>
+
     </div>
 
-    <!-- Buttons -->
- <% if(CurrUser && item.owner && CurrUser._id.equals(item.owner._id)){ %>
+    <!-- Listing Owner Buttons -->
+
+    <% if (CurrUser && item.owner && CurrUser._id.equals(item.owner._id)) { %>
 
     <div class="row justify-content-center mt-3">
 
         <div class="col-md-6 d-flex gap-2">
 
-            <a href="/listitems/<%= item.id %>/edit"
-               class="btn btn-dark">
+            <a
+                href="/listitems/<%= item.id %>/edit"
+                class="btn btn-dark"
+            >
                 Edit
             </a>
 
-            <form method="POST"
-                  action="/listitems/<%= item.id %>?_method=DELETE">
+            <form
+                method="POST"
+                action="/listitems/<%= item.id %>?_method=DELETE"
+            >
 
-                <button onc class="btn btn-danger">
+                <button class="btn btn-danger">
                     Delete
                 </button>
 
@@ -67,140 +69,174 @@
 
     <% } %>
 
-    <hr>
+    <div class="text-center my-5">
+    <h4 class="fw-bold">⭐ Guest Reviews</h4>
+    <p class="text-muted mb-0">See what other travelers are saying</p>
+</div>
 
+   
     <!-- Review Form -->
-    <% if(CurrUser){ %>
 
-    <div class="row justify-content-center">
+<% if (CurrUser) { %>
 
-        <div class="col-md-8">
+<div class="row justify-content-center">
 
-            <h4 class="mb-3">Review & Ratings</h4>
+    <div class="col-md-8">
 
-            <form
-                method="POST"
-                action="/listitems/<%= item.id %>/reviews"
-                class="needs-validation"
-                novalidate
-            >
+        <h4 class="mb-3">Review & Ratings</h4>
 
-                <div class="mb-3">
+        <form
+            method="POST"
+            action="/listitems/<%= item.id %>/reviews"
+            class="needs-validation"
+            novalidate
+        >
 
-                    <label class="form-label">Rating</label>
+            <div class="mb-3">
 
-                    <div class="stars">
+                <label class="form-label">Rating</label>
 
-                        <input type="radio" id="star1" name="review[rating]" value="1" required>
-                        <label for="star1">★</label>
+                <div class="stars">
 
-                        <input type="radio" id="star2" name="review[rating]" value="2">
-                        <label for="star2">★</label>
+                    <input type="radio" id="star1" name="review[rating]" value="1" required>
+                    <label for="star1">★</label>
 
-                        <input type="radio" id="star3" name="review[rating]" value="3">
-                        <label for="star3">★</label>
+                    <input type="radio" id="star2" name="review[rating]" value="2">
+                    <label for="star2">★</label>
 
-                        <input type="radio" id="star4" name="review[rating]" value="4">
-                        <label for="star4">★</label>
+                    <input type="radio" id="star3" name="review[rating]" value="3">
+                    <label for="star3">★</label>
 
-                        <input type="radio" id="star5" name="review[rating]" value="5">
-                        <label for="star5">★</label>
+                    <input type="radio" id="star4" name="review[rating]" value="4">
+                    <label for="star4">★</label>
 
-                    </div>
-
-                </div>
-
-                <div class="mb-3">
-
-                    <label for="comment" class="form-label">
-                        Comment
-                    </label>
-
-                    <textarea
-                        class="form-control"
-                        id="comment"
-                        name="review[comment]"
-                        rows="4"
-                        required
-                    ></textarea>
-
-                </div>
-                    
-                <button  class="btn btn-dark">
-                    Submit Review
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-    <% } %>
-
-    <hr>
-
-    <!-- Reviews -->
-
-    <div class="row">
-
-        <% for(const review of item.reviews){ %>
-
-        <div class="col-md-4 mb-3">
-
-            <div class="card review-card">
-
-                <div class="card-body">
-
-                    <h5><%= review.author.email %></h5>
-
-                    <div class="review-stars">
-
-                        <% for(let i=0;i<review.rating;i++){ %>
-                            ★
-                        <% } %>
-
-                    </div>
-
-                    <p class="card-text">
-                        <%= review.comment %>
-                    </p>
-
-                    <form
-                        method="POST"
-                        action="/listitems/<%= item.id %>/reviews/<%= review.id %>?_method=DELETE"
-                    >
-
-                        <button class="btn btn-danger btn-sm">
-                            Delete
-                        </button>
-
-                    </form>
+                    <input type="radio" id="star5" name="review[rating]" value="5">
+                    <label for="star5">★</label>
 
                 </div>
 
             </div>
 
-        </div>
+            <div class="mb-3">
 
-        <% } %>
+                <label for="comment" class="form-label">
+                    Comment
+                </label>
+
+                <textarea
+                    class="form-control"
+                    id="comment"
+                    name="review[comment]"
+                    rows="4"
+                    required
+                ></textarea>
+
+            </div>
+
+            <button class="btn btn-dark">
+                Submit Review
+            </button>
+
+        </form>
 
     </div>
 
-    <hr>
+</div>
 
-    <!-- Map Section (moved to the end, after reviews) -->
-    <div class="row justify-content-center  ">
+<% } else { %>
 
-        <div class="col-md-10">
+<div class="alert alert-info text-center">
 
-            <h4 class="mb-3">Where you'll be</h4>
+    <h5 class="mb-2">Want to write a review?</h5>
 
-            <div id="map" style="height: 400px; width: 100%;  border-radius: 10px; margin-bottom:20px "></div>
+    <p class="mb-3">
+        Please log in to share your experience.
+    </p>
+
+    <a href="/login" class="btn btn-dark">
+        Login
+    </a>
+
+</div>
+
+<% } %>
+
+
+
+<!-- Reviews -->
+<div class="row ">
+
+<% for (const review of item.reviews) { %>
+
+    <div class="col-md-4  mb-3">
+
+        <div class="card review-card">
+
+            <div class="card-body">
+
+                <h5><%= review.author.email %></h5>
+
+                <div class="review-stars text-warning fs-5 mb-2">
+
+                    <% for(let i = 1; i <= 5; i++) { %>
+                        <% if(i <= review.rating) { %>
+                            ★
+                        <% } else { %>
+                            ☆
+                        <% } %>
+                    <% } %>
+
+                </div>
+
+                <p class="card-text">
+                    <%= review.comment %>
+                </p>
+
+                <% if (CurrUser && review.author && CurrUser._id.equals(review.author._id)) { %>
+
+                <form
+                    method="POST"
+                    action="/listitems/<%= item.id %>/reviews/<%= review.id %>?_method=DELETE"
+                >
+
+                    <button class="btn btn-danger btn-sm">
+                        Delete Review
+                    </button>
+
+                </form>
+
+                <% } %>
+
+            </div>
 
         </div>
 
     </div>
+
+<% } %>
+
+</div>
+
+<hr>
+
+<div class="d-flex align-items-center mb-3 mt-5 ">
+    
+    <h5 style="margin-left: 100px;" class="mb-0  pl-5 fw-semibold">📍Where you'll be</h5>
+</div>
+<div class="row justify-content-center">
+
+    <div class="col-md-10">
+
+      
+
+        <div
+            id="map"
+            style="height:400px; width:100%; border-radius:10px; margin-bottom:20px;"
+        ></div>
+
+    </div>
+
+</div>
 
 </div>
 

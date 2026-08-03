@@ -103,7 +103,7 @@ module.exports.addwishlist=async(req,res)=>{
             await client.save();
         }
 
-        res.redirect(`/listitems/${id}`);
+        res.redirect("/listitems");
     } catch (err) {
         console.log(err);
         res.status(500).send("Something went wrong");

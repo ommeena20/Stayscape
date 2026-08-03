@@ -43,8 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
     heartButtons.forEach((btn) => {
         btn.addEventListener("click", function () {
             const heart = this.querySelector("i");
-            heart.classList.toggle("text-danger");
+           
             heart.classList.toggle("text-secondary");
+            heart.classList.toggle("text-danger");
+            
         });
     });
 
