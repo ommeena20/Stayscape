@@ -91,6 +91,9 @@ app.get("/about", (req, res) => {
   res.render("listitems/About.ejs");
 });
 
+app.get("/", (req, res) => {
+  res.redirect("/listitems");
+});
 
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));
