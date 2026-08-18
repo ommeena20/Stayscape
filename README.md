@@ -11,7 +11,7 @@ StayScape is an Airbnb-inspired full-stack web application where users can disco
 * Ratings and reviews
 * Image uploads
 * Interactive maps
-* Responsive design
+  
 
 ## Tech Stack
 
