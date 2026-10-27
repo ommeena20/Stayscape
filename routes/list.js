@@ -85,7 +85,7 @@ router
 router
   .route("/:id")
   .get(
-    isLoggedin,
+    
     Wrapasync(Listcontroller.showsingleitem)
   )
   .put(

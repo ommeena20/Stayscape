@@ -1,7 +1,5 @@
 <% layout("/layouts/boilerplate") %>
 
-<% layout("/layouts/boilerplate") %>
-
 <link rel="stylesheet" href="/css/gallery.css">
 
 <div class="gallery-header">
@@ -30,7 +28,7 @@
   <% captions.forEach((caption, i) => { %>
     <div class="gallery-item">
       <img
-        src="https://loremflickr.com/600/400/villa?random=<%= Math.random() %>"
+        src="https://picsum.photos/seed/stay<%= i %>/600/400"
         alt="<%= caption %>"
         loading="lazy"
       >
