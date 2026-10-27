@@ -1,9 +1,8 @@
 const Client = require("../models/Client");
 
 module.exports.signupForm = (req, res) => {
-    res.render("clients/signup");
+    res.render("Client/signup.ejs");
 };
-
 module.exports.signup = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
@@ -21,7 +20,7 @@ module.exports.signup = async (req, res, next) => {
 };
 
 module.exports.loginForm = (req, res) => {
-    res.render("clients/login");
+    res.render("Client/login.ejs");
 };
 
 module.exports.login = (req, res) => {
@@ -32,7 +31,7 @@ module.exports.login = (req, res) => {
 
 module.exports.showUsers = async (req, res) => {
     const users = await Client.find({});
-    res.render("clients/users", { users });
+     res.render("Client/Users.ejs", { users });
 };
 
 module.exports.logout = (req, res, next) => {
